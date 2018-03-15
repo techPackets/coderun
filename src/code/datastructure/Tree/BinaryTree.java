@@ -1,113 +1,75 @@
 package code.datastructure.Tree;
 
-//Java program for different tree traversals
+class Node<T> {
+	T key;
+	Node<T> left;
+	Node<T> right;
+	Node<T> parent;
 
-/* Class containing left and right child of current
-node and key value*/
-class Node
-{
- int key;
- Node left, right;
-
- public Node(int item)
- {
-     key = item;
-     left = right = null;
- }
+	Node(T key) {
+		this.key = key;
+	}
+	
+	/*I put this to debug the code*/
+	@Override
+	public String toString() {
+		return "Node [key=" + key + "]";
+	}
 }
 
-class BinaryTree
-{
- // Root of Binary Tree
- Node root;
+class BinaryTree<T> {
+	Node<T> root;
 
- BinaryTree()
- {
-     root = null;
- }
+	BinaryTree(Node<T> root) {
+		this.root = root;
+	}
 
- /* Given a binary tree, print its nodes according to the
-   "bottom-up" postorder traversal. */
- void printPostorder(Node node)
- {
-     if (node == null)
-         return;
+	public void addNode(Node<T> n, Node<T> parent, String orientation) {
+		if (orientation.equals("LEFT")) {
+			if (parent.left != null)
+				throw new RuntimeException("slot is occupied");
+			parent.left = n;
+		} else {
+			if (parent.right != null)
+				throw new RuntimeException("slot is occupied");
+			parent.right = n;
+		}
+	}
 
-     // first recur on left subtree
-     printPostorder(node.left);
+	/* traversing the tree in pre order */
+	public void printTreeInPreOrder(Node<T> node) {
+		//System.out.println(Arrays.toString(Thread.currentThread().getStackTrace()));
+		if (node == null)
+			return;
+		System.out.println(node.key);
+		printTreeInPreOrder(node.left);
+		printTreeInPreOrder(node.right);
+	}
 
-     // then recur on right subtree
-     printPostorder(node.right);
+	//@formatter:off
+	/*
+    BINARY TREE  
+	   3
+      / \
+     1   4
+        / \
+       2   5
+    */
+    //@formatter:on
+	public static void main(String[] args) {
+		Node<Integer> root = new Node<Integer>(3);
+		BinaryTree<Integer> bTree = new BinaryTree<Integer>(root);
+		Node<Integer> one = new Node<Integer>(1);
+		bTree.addNode(one, root, "LEFT");
+		Node<Integer> four = new Node<Integer>(4);
+		bTree.addNode(four, root, "RIGHT");
+		Node<Integer> two = new Node<Integer>(2);
+		bTree.addNode(two, four, "LEFT");
+		Node<Integer> five = new Node<Integer>(5);
+		bTree.addNode(five, four, "RIGHT");
+		
+		bTree.printTreeInPreOrder(root);
 
-     // now deal with the node
-     System.out.print(node.key + " ");
- }
+	}
 
- /* Given a binary tree, print its nodes in inorder*/
- void printInorder(Node node)
- {
-     if (node == null)
-         return;
-
-     /* first recur on left child */
-     printInorder(node.left);
-
-     /* then print the data of node */
-     System.out.print(node.key + " ");
-
-     /* now recur on right child */
-     printInorder(node.right);
- }
-
- /* Given a binary tree, print its nodes in preorder*/
- void printPreorder(Node node)
- {
-    /* if (node == null)
-         return;
-
-      first print data of node 
-     System.out.print(node.key + " ");
-
-      then recur on left sutree 
-     printPreorder(node.left);
-
-      now recur on right subtree 
-     printPreorder(node.right);*/
-	 
-	 if(node != null) {
-		 //first print data of node 
-	     System.out.print(node.key + " ");
-
-	      //then recur on left sutree 
-	     printPreorder(node.left);
-
-	      //now recur on right subtree 
-	     printPreorder(node.right);
-	 }
- }
-
- // Wrappers over above recursive functions
- void printPostorder()  {     printPostorder(root);  }
- void printInorder()    {     printInorder(root);   }
- void printPreorder()   {     printPreorder(root);  }
-
- // Driver method
- public static void main(String[] args)
- {
-     BinaryTree tree = new BinaryTree();
-     tree.root = new Node(1);
-     tree.root.left = new Node(2);
-     tree.root.right = new Node(3);
-     tree.root.left.left = new Node(4);
-     tree.root.left.right = new Node(5);
-
-     System.out.println("Preorder traversal of binary tree is ");
-     tree.printPreorder();
-
-     System.out.println("\nInorder traversal of binary tree is ");
-     tree.printInorder();
-
-     System.out.println("\nPostorder traversal of binary tree is ");
-     tree.printPostorder();
- }
 }
