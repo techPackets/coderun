@@ -1,26 +1,9 @@
 package code.datastructure.Tree;
 
-class Node<T> {
-	T key;
-	Node<T> left;
-	Node<T> right;
-	Node<T> parent;
-
-	Node(T key) {
-		this.key = key;
-	}
-	
-	/*I put this to debug the code*/
-	@Override
-	public String toString() {
-		return "Node [key=" + key + "]";
-	}
-}
-
-class BinaryTree<T> {
+class BinaryTreeTraversals<T> {
 	Node<T> root;
 
-	BinaryTree(Node<T> root) {
+	BinaryTreeTraversals(Node<T> root) {
 		this.root = root;
 	}
 
@@ -36,13 +19,31 @@ class BinaryTree<T> {
 		}
 	}
 
-	/* traversing the tree in pre order */
+	/* traversing the tree in pre-order */
 	public void printTreeInPreOrder(Node<T> node) {
 		if (node == null)
 			return;
 		System.out.println(node.key);
 		printTreeInPreOrder(node.left);
 		printTreeInPreOrder(node.right);
+	}
+
+	/* traversing the tree in in-order */
+	public void printTreeInOrder(Node<T> node) {
+		if (node == null)
+			return;
+		printTreeInPreOrder(node.left);
+		System.out.println(node.key);
+		printTreeInPreOrder(node.right);
+	}
+
+	/* traversing the tree in post-order */
+	public void printTreeInPostOrder(Node<T> node) {
+		if (node == null)
+			return;
+		printTreeInPreOrder(node.left);
+		printTreeInPreOrder(node.right);
+		System.out.println(node.key);
 	}
 
 	//@formatter:off
@@ -57,7 +58,7 @@ class BinaryTree<T> {
     //@formatter:on
 	public static void main(String[] args) {
 		Node<Integer> root = new Node<Integer>(3);
-		BinaryTree<Integer> bTree = new BinaryTree<Integer>(root);
+		BinaryTreeTraversals<Integer> bTree = new BinaryTreeTraversals<Integer>(root);
 		Node<Integer> one = new Node<Integer>(1);
 		bTree.addNode(one, root, "LEFT");
 		Node<Integer> four = new Node<Integer>(4);
@@ -66,9 +67,15 @@ class BinaryTree<T> {
 		bTree.addNode(two, four, "LEFT");
 		Node<Integer> five = new Node<Integer>(5);
 		bTree.addNode(five, four, "RIGHT");
-		
+
+		System.out.println("Pre-order traversal of the tree");
 		bTree.printTreeInPreOrder(root);
-
+		
+		System.out.println("In-order traversal of the tree");
+		bTree.printTreeInOrder(root);
+		
+		System.out.println("Post-order traversal of the tree");
+		bTree.printTreeInPostOrder(root);
+		 
 	}
-
 }
