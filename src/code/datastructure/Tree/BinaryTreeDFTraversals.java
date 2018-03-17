@@ -20,40 +20,40 @@ class BinaryTreeDFTraversals<T> {
 	}
 
 	/* traversing the tree in pre-order */
-	public void printTreeInPreOrder(Node<T> node) {
+	public void printTreePreOrder(Node<T> node) {
 		if (node == null)
 			return;
-		System.out.println(node.key);
-		printTreeInPreOrder(node.left);
-		printTreeInPreOrder(node.right);
+		System.out.print(node.key + " ");
+		printTreePreOrder(node.left);
+		printTreePreOrder(node.right);
 	}
 
 	/* traversing the tree in in-order */
 	public void printTreeInOrder(Node<T> node) {
 		if (node == null)
 			return;
-		printTreeInPreOrder(node.left);
-		System.out.println(node.key);
-		printTreeInPreOrder(node.right);
+		printTreeInOrder(node.left);
+		System.out.print(node.key + " ");
+		printTreeInOrder(node.right);
 	}
 
 	/* traversing the tree in post-order */
-	public void printTreeInPostOrder(Node<T> node) {
+	public void printTreePostOrder(Node<T> node) {
 		if (node == null)
 			return;
-		printTreeInPreOrder(node.left);
-		printTreeInPreOrder(node.right);
-		System.out.println(node.key);
+		printTreePostOrder(node.left);
+		printTreePostOrder(node.right);
+		System.out.print(node.key + " ");
 	}
 
 	//@formatter:off
 	/*
     BINARY TREE  
 	   3
-      / \
-     1   4
-        / \
-       2   5
+     /  \
+    1     4
+   / \   / \
+  6   7 2   5
     */
     //@formatter:on
 	public static void main(String[] args) {
@@ -61,6 +61,10 @@ class BinaryTreeDFTraversals<T> {
 		BinaryTreeDFTraversals<Integer> bTree = new BinaryTreeDFTraversals<Integer>(root);
 		Node<Integer> one = new Node<Integer>(1);
 		bTree.addNode(one, root, "LEFT");
+		Node<Integer> six = new Node<Integer>(6);
+		bTree.addNode(six, one, "LEFT");
+		Node<Integer> seven = new Node<Integer>(7);
+		bTree.addNode(seven, one, "RIGHT");
 		Node<Integer> four = new Node<Integer>(4);
 		bTree.addNode(four, root, "RIGHT");
 		Node<Integer> two = new Node<Integer>(2);
@@ -69,13 +73,15 @@ class BinaryTreeDFTraversals<T> {
 		bTree.addNode(five, four, "RIGHT");
 
 		System.out.println("Pre-order traversal of the tree");
-		bTree.printTreeInPreOrder(root);
+		bTree.printTreePreOrder(root);
 		
+		System.out.println();
 		System.out.println("In-order traversal of the tree");
 		bTree.printTreeInOrder(root);
 		
+		System.out.println();
 		System.out.println("Post-order traversal of the tree");
-		bTree.printTreeInPostOrder(root);
+		bTree.printTreePostOrder(root);
 		 
 	}
 }
