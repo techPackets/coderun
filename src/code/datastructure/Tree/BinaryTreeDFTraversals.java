@@ -46,16 +46,16 @@ class BinaryTreeDFTraversals<T> {
 		System.out.print(node.key + " ");
 	}
 
-	//@formatter:off
-	/*
-    BINARY TREE  
-	   3
-     /  \
-    1     4
-   / \   / \
-  6   7 2   5
-    */
-    //@formatter:on
+	 //@formatter:off
+		/*
+	    BINARY TREE  
+		   3
+	     /  \
+	    1     4
+	   / \   / \
+	  6   7 2   5
+	    */
+	 //@formatter:on
 	public static void main(String[] args) {
 		Node<Integer> root = new Node<Integer>(3);
 		BinaryTreeDFTraversals<Integer> bTree = new BinaryTreeDFTraversals<Integer>(root);

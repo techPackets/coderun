@@ -37,12 +37,12 @@ class BinaryTree<T> {
 	}
 
 	/* traversing the tree in pre order */
-	public void printTreeInPreOrder(Node<T> node) {
+	public void printTreePreOrder(Node<T> node) {
 		if (node == null)
 			return;
-		System.out.println(node.key);
-		printTreeInPreOrder(node.left);
-		printTreeInPreOrder(node.right);
+		System.out.print(node.key + " ");
+		printTreePreOrder(node.left);
+		printTreePreOrder(node.right);
 	}
 
 	//@formatter:off
@@ -67,7 +67,7 @@ class BinaryTree<T> {
 		Node<Integer> five = new Node<Integer>(5);
 		bTree.addNode(five, four, "RIGHT");
 		
-		bTree.printTreeInPreOrder(root);
+		bTree.printTreePreOrder(root);
 
 	}
 
