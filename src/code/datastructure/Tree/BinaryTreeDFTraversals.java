@@ -1,9 +1,9 @@
 package code.datastructure.Tree;
 
-class BinaryTreeTraversals<T> {
+class BinaryTreeDFTraversals<T> {
 	Node<T> root;
 
-	BinaryTreeTraversals(Node<T> root) {
+	BinaryTreeDFTraversals(Node<T> root) {
 		this.root = root;
 	}
 
@@ -58,7 +58,7 @@ class BinaryTreeTraversals<T> {
     //@formatter:on
 	public static void main(String[] args) {
 		Node<Integer> root = new Node<Integer>(3);
-		BinaryTreeTraversals<Integer> bTree = new BinaryTreeTraversals<Integer>(root);
+		BinaryTreeDFTraversals<Integer> bTree = new BinaryTreeDFTraversals<Integer>(root);
 		Node<Integer> one = new Node<Integer>(1);
 		bTree.addNode(one, root, "LEFT");
 		Node<Integer> four = new Node<Integer>(4);
