@@ -70,7 +70,5 @@ public class Recursion {
 		runHeadRecursion(5);
 		runTailRecursion(6);
 		runMultipleRecursion(3);
-		// int result = findPow(2,5);
-		// System.out.println(result);
 	}
 }
