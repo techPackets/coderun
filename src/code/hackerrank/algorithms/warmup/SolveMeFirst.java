@@ -2,6 +2,7 @@ package code.hackerrank.algorithms.warmup;
 
 import java.util.Scanner;
 
+/*https://www.hackerrank.com/challenges/solve-me-first/problem*/
 public class SolveMeFirst {
 
 	static int solveMeFirst(int a, int b) {
